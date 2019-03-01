@@ -9,6 +9,8 @@ variables:
 
 steps:
 - script: dotnet restore
+  displayName: 'dotnet restore'
 - script: dotnet build
-- script: cd ./TestHeroku && heroku container:push web --app testherokucorerpt --context-path ..
-  displayName: 'docker build'
+  displayName: 'dotnet build'
+- script: cd ./TestHeroku && heroku login && heroku container:push web --app testherokucorerpt --context-path ..
+  displayName: 'push image to Heroku'
